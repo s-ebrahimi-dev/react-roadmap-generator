@@ -6,7 +6,14 @@ import { useState } from "react";
 function App() {
   const [programmingFields] = useState(fields);
   const [field, setField] = useState("-1");
+  const [step, setStep] = useState([]);
 
+  const findFielsStep = (newField) => {
+    if (newField !== "-1") {
+      const mainField = programmingFields.find((field) => field.id === newField)
+      setStep(mainField.technologies)
+    }
+  }
   return (
     <>
       <div id="card">
