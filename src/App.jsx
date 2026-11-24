@@ -8,7 +8,7 @@ function App() {
   const [field, setField] = useState("-1");
   const [step, setStep] = useState([]);
 
-  const findFielsStep = (newField) => {
+  const findFieldStep = (newField) => {
     if (newField !== "-1") {
       const mainField = programmingFields.find((field) => field.id === newField)
       setStep(mainField.technologies)
@@ -25,7 +25,13 @@ function App() {
             <select
               id="select-category"
               value={field}
-              onChange={(event) => setField(event.target.value)}
+              onChange={(event) => {
+                setField(event.target.value)
+
+                findFieldStep(event.target.value)
+              }
+                
+              }
             >
               <option value="-1">لطفا فیلد مورد نظر را انتخاب نمایید</option>
               {programmingFields.map((field) => (
@@ -52,18 +58,7 @@ function App() {
                 <p>در ابتدا لطفا حوزه مورد نظر خود را انتخاب فرمایید</p>
               </div>
             ) : (
-              <article className="roadmap-item">
-                <span className="roadmap-step">1</span>
-                <img
-                  src="./public/images/javascript.png"
-                  className="technology-img"
-                  alt=""
-                />
-                <div className="roadmap-content">
-                  <h1 className="technology-name">Next.js</h1>
-                </div>
-                <div className="img-overlay"></div>
-              </article>
+
             )}
           </div>
         </div>
