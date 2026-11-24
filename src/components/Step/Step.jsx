@@ -1,13 +1,14 @@
 import React from "react";
 
-function Step(id, name, step, img ) {
+function Step({id, name, step, image}) {
+
   return (
     <article className="roadmap-item">
       <span className="roadmap-step">{step}</span>
       <img
-        src={img}
+        src={image}
         className="technology-img"
-        alt=""
+        alt={name}
       />
       <div className="roadmap-content">
         <h1 className="technology-name">{name}</h1>

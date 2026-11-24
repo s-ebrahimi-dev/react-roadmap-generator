@@ -2,16 +2,16 @@ import "./App.css";
 
 import fields from "./../data/fields.js";
 import { useState } from "react";
-
+import Step from "./components/Step/Step.jsx";
 function App() {
   const [programmingFields] = useState(fields);
   const [field, setField] = useState("-1");
-  const [step, setStep] = useState([]);
+  const [steps, setSteps] = useState([]);
 
   const findFieldStep = (newField) => {
     if (newField !== "-1") {
       const mainField = programmingFields.find((field) => field.id === newField)
-      setStep(mainField.technologies)
+      setSteps(mainField.technologies)
     }
   }
   return (
@@ -52,13 +52,13 @@ function App() {
           )}
 
           {/* <!-- is-empty className --> */}
-          <div id="roadmap" className={field === "-1" && "is-empty"}>
+          <div id="roadmap" className={field === "-1" ? "is-empty" : ""}>
             {field === "-1" ? (
               <div className="empty-list">
                 <p>در ابتدا لطفا حوزه مورد نظر خود را انتخاب فرمایید</p>
               </div>
             ) : (
-
+              steps.map(step=><Step key={step.id} {...step}/>)
             )}
           </div>
         </div>
